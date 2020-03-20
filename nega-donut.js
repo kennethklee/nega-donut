@@ -56,9 +56,10 @@ class NegaDonut extends HTMLElement {
     this.attachShadow({mode: 'open'})
     this.shadowRoot.appendChild(document.importNode(template.content, true))
 
-    if (window.ResizeObserver) {
-      this._resizeObserver = new ResizeObserver(entries => this.performUpdate())
-    }
+    // TODO Fix resizing
+    // if (window.ResizeObserver) {
+    //   this._resizeObserver = new ResizeObserver(entries => this.performUpdate())
+    // }
 
     this._ready = false
   }
@@ -78,12 +79,13 @@ class NegaDonut extends HTMLElement {
   connectedCallback() {
     this._ready = true
 
-    if (this._resizeObserver) this._resizeObserver.observe(this);
+    // if (this._resizeObserver) this._resizeObserver.observe(this);
     this.performUpdate()
   }
 
   disconnectedCallback() {
-    if (this._resizeObserver) this._resizeObserver.unobserve(this);
+    this._ready = false
+    // if (this._resizeObserver) this._resizeObserver.unobserve(this);
   }
 
   performUpdate() {
