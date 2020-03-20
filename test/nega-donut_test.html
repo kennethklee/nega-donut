@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>nega-donut test</title>
+
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../node_modules/@polymer/test-fixture/test-fixture.js"></script>
+    <script src="../node_modules/mocha/mocha.js"></script>
+    <script src="../node_modules/chai/chai.js"></script>
+    <script src="../node_modules/wct-mocha/wct-mocha.js"></script>
+
+    <script type="module" src="../nega-donut.js"></script>
+  </head>
+  <body>
+    <test-fixture id="BasicTestFixture">
+      <template>
+        <nega-donut></nega-donut>
+      </template>
+    </test-fixture>
+
+    <script type="module">
+      describe('nega-donut', () => {
+        it('instantiates the element with default properties', async () => {
+          const element = fixture('BasicTestFixture')
+
+          expect(element).property('value').to.equal(null)
+          expect(element).property('percent').to.equal(0)
+        })
+
+        describe('value and percent properties', () => {
+          it('should set DOM attributes', async () => {
+            const element = fixture('BasicTestFixture')
+
+            element.value = 200
+            element.percent = 20
+
+            expect(element.getAttribute('value')).to.equal('200')
+            expect(element.getAttribute('percent')).to.equal('20')
+          })
+  
+          it('should have percent clamped', async () => {
+            const element = fixture('BasicTestFixture')
+
+            element.percent = 200
+            expect(element.percent).to.equal(100)
+            expect(element.getAttribute('percent')).to.equal('100')
+
+            element.percent = -50
+            expect(element.percent).to.equal(0)
+          })
+        })
+      })
+    </script>
+
+  </body>
+</html>
