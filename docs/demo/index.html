@@ -1,0 +1,72 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>nega-donut demo</title>
+
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+
+    <script type="module">import "../node_modules/@polymer/iron-demo-helpers/demo-pages-shared-styles.js";
+import "../node_modules/@polymer/iron-demo-helpers/demo-snippet.js";
+import '../nega-donut.js';</script>
+
+    </head><custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+        nega-donut.big {
+          width: 100px;
+          height: 100px;
+
+          --nega-donut-stoke-width: 20;
+        }
+
+        nega-donut.green {
+          --nega-donut-color: green;
+        }
+        nega-donut.yellow {
+          --nega-donut-color: yellow;
+        }
+
+      </style>
+    </custom-style>
+  
+  
+    <a href="https://kennethklee.github.io/nega-donut/demo/">
+      <code>If you are viewing from webcomponents.org, the demo may not work due to incompatibilities with lit-html and the site. Click here to visit the working demo.</code>
+    </a>
+
+    <section class="vertical-section-container centered">
+      <h3>Basic nega-donut demo</h3>
+      <demo-snippet>
+        <template>
+          <nega-donut></nega-donut>
+          <nega-donut value="180" percent="90"></nega-donut>
+        </template>
+      </demo-snippet>
+    </section>
+
+    <section class="vertical-section-container centered">
+      <h3>Styled nega-donut demo</h3>
+      <demo-snippet>
+        <template>
+          <nega-donut class="big"></nega-donut>
+          <nega-donut class="big" value="180" percent="90"></nega-donut>
+          <nega-donut class="big green" value="90" percent="45"></nega-donut>
+
+          <nega-donut id="animated" class="big yellow" value="0"></nega-donut>
+
+          <script>
+            // Animate the yellow donut
+            let percent = 0
+            let animatedEl = document.getElementById('animated')
+            setInterval(() => {
+              percent = (1 + percent) % 100
+              animatedEl.percent = percent
+              animatedEl.value = percent * 10
+            }, 100)
+          </script>
+        </template>
+      </demo-snippet>
+    </section>
+  
+
+</html>

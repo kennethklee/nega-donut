@@ -1,6 +1,6 @@
 {
   "name": "nega-donut",
-  "version": "0.1.1",
+  "version": "0.0.0",
   "description": "SVG Donut as a WebComponent",
   "main": "nega-donut.js",
   "scripts": {
